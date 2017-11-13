@@ -15,7 +15,11 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request, BusinessHoursManagement $serv)
     {
-        // replace this example code with whatever you need
+        $serv = $this->container->get('BusinessHoursManagement');
+        $d = new \DateTime('17-11-2017 11:00:00');
+
+        $serv->addBusinessHours($d, 4);
+
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
