@@ -39,7 +39,6 @@ class BusinessHoursManagementTest extends WebTestCase
 
     public function testMardi9Heures()
     {
-      // Mardi 9h
       $d = new \DateTime('14-11-2017 09:00:00');
       $answer = new \DateTime('14-11-2017 14:30:00');
       $this->assertEquals($answer, self::$serv->addBusinessHours($d, self::$DELTA));
@@ -47,9 +46,15 @@ class BusinessHoursManagementTest extends WebTestCase
 
     public function testVendredi10Heures()
     {
-      // Mardi 9h
       $d = new \DateTime('17-11-2017 10:00:00');
       $answer = new \DateTime('20-11-2017 15:30:00');
+      $this->assertEquals($answer, self::$serv->addBusinessHours($d, self::$DELTA));
+    }
+
+    public function testNouvelAn()
+    {
+      $d = new \DateTime('29-12-2017 10:00:00');
+      $answer = new \DateTime('02-01-2018 11:00:00');
       $this->assertEquals($answer, self::$serv->addBusinessHours($d, self::$DELTA));
     }
 

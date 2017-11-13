@@ -4,7 +4,14 @@
     <div id="wrapper">
         <div id="container">
             <h1>Edebex test</h1>
-
+            <h3>Usage :</h3>
+            <p>Un fichier de test contenant les examples proposés dans le mail ainsi qu'un évènement interférant avec le calendrier est disponible.</p>
+            <p><code>$ phpunit tests/AppBundle/Service/BusinessHoursManagementTest.php</code></p>
+            <h3>Notes :</h3>
+            <p>L'outil est géré sous la forme d'un service</p>
+            <p>J'ai utilisé un package de gestion des heures d'ouverture (<a href='https://github.com/spatie/opening-hours'>https://github.com/spatie/opening-hours</a>), que j'ai étendu dans le fichier
+            : <code>src/AppBundle/CustomOpeningHours</code></p>
+            <p>J'ai utilisé le package <a href='https://github.com/u01jmg3/ics-parser'>https://github.com/u01jmg3/ics-parser</a> pour la lecture du calendrier</p>
         </div>
     </div>
 {% endblock %}

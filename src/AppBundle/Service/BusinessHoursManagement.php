@@ -5,6 +5,7 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+use ICal\ICal;
 use AppBundle\CustomOpeningHours;
 
 class BusinessHoursManagement
@@ -22,11 +23,39 @@ class BusinessHoursManagement
     protected function _getOpeningHoursConfig() : Array
     {
       // Load business hours config
-      $root = $this->container->get('kernel')->getRootDir();
-      $config = Yaml::parse(file_get_contents($root.'/config/openinghours.yml'));
+      $config = Yaml::parse(file_get_contents($this->container->get('kernel')->getRootDir().'/config/openinghours.yml'));
+      $config['exceptions'] = $this->_getHolidaysConfig();
 
       return $config;
     }
+
+    protected function _getHolidaysConfig(): Array
+    {
+        $ical = new ICal($this->container->get('kernel')->getRootDir().'/config/US_Holidays.ics', array(
+            'defaultSpan'           => 2,     // Default value
+            'defaultTimeZone'       => 'UTC',
+            'defaultWeekStart'      => 'MO',  // Default value
+            'skipRecurrence'        => false, // Default value
+            'useTimeZoneWithRRules' => false, // Default value
+        ));
+
+        $answer = [];
+
+        foreach($ical->events() as $event)
+        {
+          $period = new \DatePeriod(
+            new \DateTime($event->dtstart),
+            new \DateInterval('P1D'),
+            new \DateTime($event->dtend)
+          );
+          foreach($period as $day)
+          {
+            $answer[$day->format('Y-m-d')] = [];
+          }
+        }
+        return $answer;
+    }
+
 
     /**
      * @param \DateTime $from  Initial datetime
