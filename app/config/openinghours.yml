@@ -1,0 +1,17 @@
+monday:
+  - 13:30-17:00
+tuesday:
+  - 09:00-12:00
+  - 13:30-17:00
+wednesday:
+  - 09:00-12:00
+  - 13:30-17:00
+thursday:
+  - 09:00-12:00
+  - 13:30-17:00
+friday:
+  - 09:00-12:00
+saturday: []
+sunday: []
+exceptions: []
+  # Fill this line in service with ical ?
