@@ -4,9 +4,13 @@ Edebex test
 A Symfony project created on November 13, 2017, 10:04 am.
 
 Usage :
+
 $ git clone
+
 $ composer install
+
 $ phpunit tests/AppBundle/Service/BusinessHoursManagementTest.php
+
 (Un fichier de test contenant les examples proposés dans le mail ainsi qu'un évènement interférant avec le calendrier est disponible)
 
 Notes :
