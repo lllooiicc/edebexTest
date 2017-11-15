@@ -68,9 +68,13 @@ class BusinessHoursManagement
 
         if(!$this->opnHrs->isOpenAt($from))
         {
-          throw new \RuntimeException('Datetime is not included in opened times');
-        }
+          #throw new \RuntimeException('Datetime is not included in opened times');
 
+          # set from to next open times
+          $from = $this->opnHrs->nextOpen(clone $from);
+
+          $this->logger->debug('Datetime is not included in opened times. So, setting it to : ' . $from->format(\DateTime::ATOM));
+        }
         $tmpDateTime = $from;
         $interval = new \DateInterval('PT' . $hours . 'H');
 

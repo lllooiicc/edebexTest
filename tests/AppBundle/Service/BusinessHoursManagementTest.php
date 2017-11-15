@@ -32,9 +32,11 @@ class BusinessHoursManagementTest extends WebTestCase
     {
       // Dimanche
       $d = new \DateTime('12-11-2017 09:00:00');
+      $answer = new \DateTime('14-11-2017 09:30:00');
 
-      $this->expectException(\RuntimeException::class);
-      self::$serv->addBusinessHours($d, self::$DELTA);
+      //$this->expectException(\RuntimeException::class);
+      //self::$serv->addBusinessHours($d, self::$DELTA);
+      $this->assertEquals($answer, self::$serv->addBusinessHours($d, self::$DELTA));
     }
 
     public function testMardi9Heures()
